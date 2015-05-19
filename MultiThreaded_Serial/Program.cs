@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace ESUM_Logger
 {
+    /**
+     * Writen by Constantinos Miltiadis 
+     * for The Chair of Information Architecture 
+     * ETH Zurich, 2015
+     */
+
     class Program
     {
         static bool exit = false;
