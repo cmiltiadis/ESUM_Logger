@@ -31,7 +31,7 @@ namespace ESUM_Logger
         public static bool monitorInput = false;
         //
         static readonly int[] BaudRates = { 9600, 14400, 19200, 28800, 38400, 57600, 115200 };//list of usual Baud Rates
-        public static readonly string[] deviceStartPhrases = { "Bat", "Bat", "$GNDTM" }; // <-- Symmertrical to Device Enums
+        public static readonly string[] deviceStartPhrases = { "$Sound", "Bat", "$GNDTM" }; // <-- Symmertrical to Device Enums
         static readonly int[] deviceBaudRates = { 6, 6, 6 };  //eg. 6 is BaudRates[6] =115200  <-- Symmertrical to Device Enums 
         //
         static int numOfFramesToExport = 2;
@@ -130,7 +130,10 @@ namespace ESUM_Logger
         public static string Clicker3 { get { return "F3"; } }
 
         //clicker combinations
-        public static string ClickerStart { get { return Clicker3 + Clicker2 + Clicker1; } }
+        public static string Clicker_StartCommand { get { return Clicker3 + Clicker2 + Clicker1; } }
+
+        public static string Clicker_LogEvent { get { return Clicker3 + Clicker3 + Clicker3; } }
+
         public static string ClickerPause { get { return Clicker1 + Clicker2 + Clicker3; } }
         public static string ClickerClear { get { return Clicker1 + Clicker1 + Clicker1; } }
         #endregion
