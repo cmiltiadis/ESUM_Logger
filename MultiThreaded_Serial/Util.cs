@@ -25,7 +25,7 @@ namespace ESUM_Logger
     class Util
     {
         // Start automatically, or request the Rescan function from input
-        public static bool StartPortsOnAwake = false;
+        public static bool StartPortsOnAwake = true;
         //
         public static DateTime startTime;
         public static bool monitorInput = false;
