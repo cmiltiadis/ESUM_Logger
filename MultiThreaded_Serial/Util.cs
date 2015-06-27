@@ -13,7 +13,7 @@ namespace ESUM_Logger
         WaspGas,
         GPS
     };
-    public enum DeviceComPort // < -- Symmetrical 
+    public enum DeviceComPort // < -- Symmetrical ***PC SPECIFIC***
     {
         COM9,
         COM10,
@@ -31,7 +31,7 @@ namespace ESUM_Logger
         public static bool monitorInput = false;
         //
         static readonly int[] BaudRates = { 9600, 14400, 19200, 28800, 38400, 57600, 115200 };//list of usual Baud Rates
-        public static readonly string[] deviceStartPhrases = { "$Sound", "Bat", "$GNDTM" }; // <-- Symmertrical to Device Enums
+        public static readonly string[] deviceStartPhrases = { "$Sound", "$", "$GNDTM" }; // <-- Symmertrical to Device Enums
         static readonly int[] deviceBaudRates = { 6, 6, 6 };  //eg. 6 is BaudRates[6] =115200  <-- Symmertrical to Device Enums 
         //
         static int numOfFramesToExport = 2;
@@ -89,6 +89,22 @@ namespace ESUM_Logger
             Console.WriteLine("Session export folder: ");
             Console.WriteLine(exportFolder);
         }
+        /*
+         *  EVENT Log
+         */
+        public static string EventLog_filename { get { return "EventLog"; } }
+        public static void LogEvent()
+        {
+            Console.WriteLine("Event");
+
+            if (doBeeps)
+            {
+                DoNBeeps(2); 
+            }
+
+            Util.ExportText("EventLog", Util.GetTimeStamp() + "\n"); 
+        }
+
         public static void ClearConsole()
         {
             Console.Clear();
@@ -143,15 +159,18 @@ namespace ESUM_Logger
         #region Time_Stuff
 
         /*  Time format guide
-         * see here: https://msdn.microsoft.com/en-us/library/8kb3ddd4(v=vs.110).aspx
+         * see here:
+         * http://www.csharp-examples.net/string-format-datetime/
+         * 
          * yy - 4 digit year
          * MM - 2 digit month (01 for January)
          * dd - 2 digit day of month
          * mm - 2 digit minutes
-         * fff - 3 digit milliseconds
+         * ss - 2 digit seconds
+         * fff - 3 digit second fractions
          */
 
-        static string TimeStampFormat { get { return "yyyy_MM_dd_HH_mm_fff"; } }
+        public static string TimeStampFormat { get { return "yyyy_MM_dd_HH_mm_ss_fff"; } }
         static string FolderTimeFormat { get { return "yyyy_MM_d_HH_mm"; } }
 
         public static TimeSpan RunTime()
